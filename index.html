@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Tagselector</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<div id="container">
+			<div id="tag_selector" class="tagselector_container unsel">
+				<div class="tag_enter unsel">
+					<input id="tag_input" type="text" class="tag_input" maxlength="25">
+				</div>
+			</div>
+			<div id="tag_autocomplete" class="tagselector_autocomplete">
+				<ul class="tagselector_autocomplete_list"></ul>
+			</div>
+		</div>
+	</body>
+	<script src="tagselector.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		window.onload = function() {
+			new TagSelector('tag_selector', 'tag_input', 'tag_autocomplete').init();
+		};
+	</script>
+</html>

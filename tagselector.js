@@ -262,7 +262,7 @@ TagSelector.prototype.__initTagIndex = function() {
 		'i': ['idm', 'ibiza', 'indie', 'indie pop', 'indie rock', 'instrumental', 'industrial', 'improvisation'],
 		'j': ['jazz', 'jam', 'j-pop', 'jungle', 'jazz funk', 'jazz fusion'],
 		'k': ['kick', 'kid', 'k-pop', 'krautrock'],
-		'l': ['life', 'live', 'latin', 'lo-fi', 'light', 'loop', 'love', 'london'],
+		'l': ['life', 'live', 'lounge', 'latin', 'lo-fi', 'light', 'loop', 'love', 'london'],
 		'm': ['mix', 'mc', 'mind', 'music', 'mashup', 'melodic', 'metal', 'mexico', 'microhouse', 'minimal', 'minimal techno', 'minimal trance', 'mixtape', 'middle eastern'],
 		'n': ['new', 'nudisco', 'nu jazz', 'nice', 'night', 'neurofunk', 'new wave', 'noise', 'neofolk', 'new york blues'],
 		'o': ['old', 'oldschool', 'opera', 'other', 'original'],

@@ -19,7 +19,11 @@
 	<script src="tagselector.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		window.onload = function() {
-			new TagSelector('tag_selector', 'tag_input', 'tag_autocomplete').init();
+			new TagSelector({
+				container: 'tag_selector', 
+				input: 'tag_input', 
+				autocomplete: 'tag_autocomplete'
+			}).init();
 		};
 	</script>
 </html>

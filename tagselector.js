@@ -1,9 +1,15 @@
-function TagSelector(container, input, autocomplete) {
+function TagSelector(settings) {
+	if (settings.container == undefined || settings.input == undefined || settings.autocomplete == undefined) {
+		console.error('invalid settings, failed to initialize tagselector');
+		return;
+	}
+
 	this.__tags = [];
-	this.__container = document.getElementById(container);
-	this.__input = document.getElementById(input);
-	this.__autocomplete = document.getElementById(autocomplete);
+	this.__container = document.getElementById(settings.container);
+	this.__input = document.getElementById(settings.input);
+	this.__autocomplete = document.getElementById(settings.autocomplete);
 	this.__list = this.__autocomplete.children[0];
+	this.__defaultWidth = !!settings.inputWidth ? settings.inputWidth + 'px' : '40px';
  
 	this.__hideAutocomplete();
 	this.__initTagIndex();
@@ -11,7 +17,7 @@ function TagSelector(container, input, autocomplete) {
  
 TagSelector.prototype.init = function() {
 	var that = this;
-	that.__input.style.width = '50px';
+	that.__input.style.width = that.__defaultWidth;
 	that.__input.focus();
  
 	that.__container.onclick = function(){		
@@ -40,9 +46,6 @@ TagSelector.prototype.init = function() {
 			that.__selectPrevTag();
 		} else if (e.keyCode === 8 && this.value.length === 0) { // backspace
 			that.__removeLastTag();
-		} else if (this.value.length > 5) {
-			var width = this.style.width;
-			this.style.width = this.value.length*8 + 'px';
 		}
 	};
  
@@ -51,10 +54,17 @@ TagSelector.prototype.init = function() {
 			return;
  
 		if (this.value.length === 0) {
-			this.style.width = '50px';
+			this.style.width = that.__defaultWidth;
 			that.__hideAutocomplete();
 		} else {
 			that.__updateAutocomplete();
+
+			if (this.value.length > 4) {
+				var width = this.style.width;
+				this.style.width = this.value.length*9 + 'px';
+			} else {
+				this.style.width = that.__defaultWidth;
+			}
 		}
 	};
  

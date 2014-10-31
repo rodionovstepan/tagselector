@@ -1,9 +1,15 @@
-function TagSelector(container, input, autocomplete) {
+function TagSelector(settings) {
+	if (settings.container == undefined || settings.input == undefined || settings.autocomplete == undefined) {
+		console.error('invalid settings, failed to initialize tagselector');
+		return;
+	}
+
 	this.__tags = [];
-	this.__container = document.getElementById(container);
-	this.__input = document.getElementById(input);
-	this.__autocomplete = document.getElementById(autocomplete);
+	this.__container = document.getElementById(settings.container);
+	this.__input = document.getElementById(settings.input);
+	this.__autocomplete = document.getElementById(settings.autocomplete);
 	this.__list = this.__autocomplete.children[0];
+	this.__defaultWidth = !!settings.inputWidth ? settings.inputWidth + 'px' : '40px';
  
 	this.__hideAutocomplete();
 	this.__initTagIndex();
@@ -11,7 +17,7 @@ function TagSelector(container, input, autocomplete) {
  
 TagSelector.prototype.init = function() {
 	var that = this;
-	that.__input.style.width = '50px';
+	that.__input.style.width = that.__defaultWidth;
 	that.__input.focus();
  
 	that.__container.onclick = function(){		
@@ -40,9 +46,6 @@ TagSelector.prototype.init = function() {
 			that.__selectPrevTag();
 		} else if (e.keyCode === 8 && this.value.length === 0) { // backspace
 			that.__removeLastTag();
-		} else if (this.value.length > 5) {
-			var width = this.style.width;
-			this.style.width = this.value.length*8 + 'px';
 		}
 	};
  
@@ -51,10 +54,17 @@ TagSelector.prototype.init = function() {
 			return;
  
 		if (this.value.length === 0) {
-			this.style.width = '50px';
+			this.style.width = that.__defaultWidth;
 			that.__hideAutocomplete();
 		} else {
 			that.__updateAutocomplete();
+
+			if (this.value.length > 4) {
+				var width = this.style.width;
+				this.style.width = this.value.length*9 + 'px';
+			} else {
+				this.style.width = that.__defaultWidth;
+			}
 		}
 	};
  
@@ -256,9 +266,9 @@ TagSelector.prototype.__initTagIndex = function() {
 		'm': ['mix', 'mc', 'mind', 'music', 'mashup', 'melodic', 'metal', 'mexico', 'microhouse', 'minimal', 'minimal techno', 'minimal trance', 'mixtape', 'middle eastern'],
 		'n': ['new', 'nudisco', 'nu jazz', 'nice', 'night', 'neurofunk', 'new wave', 'noise', 'neofolk', 'new york blues'],
 		'o': ['old', 'oldschool', 'opera', 'other', 'original'],
-		'p': ['pop', 'progressive', 'progressive house', 'progressive trance', 'punk', 'piano', 'party', 'power', 'people', 'promo', 'post-rock', 'pop rock', 'progressive rock'],
+		'p': ['pop', 'progressive', 'progressive house', 'progressive trance', 'punk', 'piano', 'party', 'power', 'people', 'promo', 'post-rock', 'pop rock', 'progressive rock', 'pixound'],
 		'q': ['quality'],
-		'r': ['rap', 'r & b', 'rock', 'relax', 'radio', 'rave', 'reggae', 'relax', 'rhapsody', 'raga', 'remix', 'retro', 'release', 'rock & roll'],
+		'r': ['rap', 'r & b', 'rock', 'radio', 'rave', 'reggae', 'relax', 'rhapsody', 'raga', 'remix', 'retro', 'release', 'rock & roll'],
 		's': ['solo', 'slow', 'sad', 'sega music', 'soul', 'soulful', 'sound', 'sonata', 'swag', 'synth', 'synthpop'],
 		't': ['tech', 'trap', 'techno', 'trash', 'techstep', 'tech house', 'tech trance', 'trance', 'trip-hop', 'tribal house', 'techno-industrial', 'theme'],
 		'u': ['uk', 'uk garage', 'uk hard house', 'urban', 'uplifting', 'uplifting trance', 'underground'],

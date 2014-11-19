@@ -8,14 +8,22 @@
  
 .tagselector_container {
 	position: relative;
+    min-height: 23px;
 	border: solid 1px #ccc;
 	cursor: text;
-	padding: 0 0 3px 0;
+    padding: 1px;
+    -webkit-transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.tagselector_container.focused {
+    border-color: #aaa;
+    outline: 0;
 }
 
 .tagselector_autocomplete {
-	position: relative;
 	border: solid 1px #ddd;
+    background-color: #fff;
 }
 
 ul.tagselector_autocomplete_list {
@@ -40,11 +48,11 @@ ul.tagselector_autocomplete_list li:hover {
 
 .tagselector_container .tag {
 	display: inline-block;
-	border: solid 1px #efefef;
-	border-radius: 3px;
-	margin: 3px 0 0 3px;
-	padding: 3px 5px;
-	cursor: pointer;
+    border: solid 1px #c1c1c1;
+    border-radius: 3px;
+    margin: 1px;
+    padding: 2px 5px;
+    cursor: pointer;
 }
 
 .tagselector_container .tag:hover {
@@ -53,7 +61,7 @@ ul.tagselector_autocomplete_list li:hover {
  
 .tagselector_container .tag_enter {
 	display: inline-block;
-	margin: 3px 0 0 3px;
+    padding-top: 2px;
 }
  
 .tagselector_container .tag_enter .tag_input {
